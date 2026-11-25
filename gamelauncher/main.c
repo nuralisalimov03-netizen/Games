@@ -112,7 +112,7 @@ static void launch(const char *dir, const char *name)
 static void read_ini(char *emu, size_t emu_size)
 {
     char ini[MAX_PATH];
-    const char *slash;
+    char *slash;
 
     snprintf(ini, MAX_PATH, "%s", self_path);
     slash = strrchr(ini, '\\');
@@ -137,7 +137,7 @@ static void read_ini(char *emu, size_t emu_size)
 static void write_ini(const char *emu)
 {
     char ini[MAX_PATH];
-    const char *slash;
+    char *slash;
     FILE *f;
 
     snprintf(ini, MAX_PATH, "%s", self_path);
