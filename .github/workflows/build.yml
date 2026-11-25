@@ -13,7 +13,7 @@ jobs:
       - name: Build with MinGW
         shell: bash
         run: |
-          gcc gamelauncher/main.c -o GameLauncher.exe -O2 -s
+          gcc gamelauncher/main.c -o GameLauncher.exe -O2 -s -lcommdlg32
           ls -la GameLauncher.exe
 
       - name: Upload build artifact
