@@ -1,0 +1,24 @@
+name: Build GameLauncher
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build with MinGW
+        shell: pwsh
+        run: |
+          gcc main.c -o GameLauncher.exe -O2 -s -municode -Wl,-subsystem,console
+          ls -la GameLauncher.exe
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: GameLauncher-exe
+          path: GameLauncher.exe
+          if-no-files-found: error
