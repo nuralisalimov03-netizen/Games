@@ -10,11 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build with MinGW
-        shell: bash
-        run: |
-          gcc gamelauncher/main.c -o GameLauncher.exe -O2 -s -lcommdlg32
-          ls -la GameLauncher.exe
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Build with MSVC
+        shell: cmd
+        run: cl /nologo /W4 /O2 /Fe:GameLauncher.exe gamelauncher\main.c /link /SUBSYSTEM:CONSOLE comdlg32.lib user32.lib
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
